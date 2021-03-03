@@ -1,5 +1,8 @@
 package br.com.alura.jpa.modelo;
 
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,7 +22,8 @@ public class Movimentacao {
     private LocalDateTime data;
     private String descricao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.PROXY)
     private Conta conta;
 
     @ManyToMany
